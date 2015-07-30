@@ -16,7 +16,30 @@ require 'faker'
    )
  end
  wikis = Wiki.all
+
+ # Create an admin user
+ admin = User.new(
+   name:     'Admin User',
+   email:    'admin@example.com',
+   password: 'helloworld',
+   role:     'admin'
+ )
+ admin.skip_confirmation!
+ admin.save!
+
+ 
+ # Create a member
+ member = User.new(
+   name:     'Member User',
+   email:    'member@example.com',
+   password: 'helloworld',
+   role:     'standard'
+ )
+ member.skip_confirmation!
+ member.save!
+
  
  
  puts "Seed finished"
  puts "#{Wiki.count} wikis created"
+ puts "#{User.count} user created"

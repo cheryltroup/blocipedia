@@ -1,2 +1,11 @@
-SENDGRID_PASSWORD:
-SENDGRID_USERNAME:
+SENDGRID_PASSWORD: 
+SENDGRID_USERNAME: 
+MY_SUPER_SECRET_VARIABLE: 
+
+development:
+stripe_api_key: 
+stripe_publishable_key: 
+
+production:
+stripe_api_key:  
+stripe_publishable_key: 

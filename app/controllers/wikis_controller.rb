@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.all
+    @wikis = Wiki.visible_to(current_user)
     authorize @wikis
   end
 
@@ -13,11 +13,12 @@ class WikisController < ApplicationController
     @wiki = Wiki.new
     authorize @wiki
   end
+ 
 
   def create
-     @wiki = Wiki.new(params.require(:wiki).permit(:title, :body))
-     #raise # this will short-circuit the method
-     authorize @wiki
+    @wiki = Wiki.new(wiki_params)
+    @wiki.user_id = current_user
+    authorize @wiki
      if @wiki.save
        flash[:notice] = "Wiki was saved."
        redirect_to @wiki
@@ -29,13 +30,15 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    @users = User.all
   end
 
   def update
     @wiki = Wiki.find(params[:id])
     authorize @wiki
+    if current_user.role == 'premium' &&
 
-    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body))
+      @wiki.update_attributes(wiki_params)
       flash[:notice] = "Wiki was updated."
       redirect_to @wiki
     else
@@ -56,5 +59,9 @@ class WikisController < ApplicationController
       render :show
     end
   end
+  private
 
+def wiki_params
+  params.require(:wiki).permit(:title, :body, :private)
+end
 end

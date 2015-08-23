@@ -9,10 +9,13 @@
 require 'faker'
  
  # Create Wikis
- 55.times do
+ 25.times do
    Wiki.create!(
      title:  Faker::Lorem.sentence,
-     body:   Faker::Lorem.paragraph
+     body:   Faker::Lorem.paragraph,
+     user_id: 'admin',
+     private: 'false'
+
    )
  end
  wikis = Wiki.all

@@ -1,4 +1,16 @@
- <%= form_tag charges_path do %>
-   <h4>Click the button!</h4>
-   <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount=<%= @stripe_btn_data[:amount] %> data-description="<%= @stripe_btn_data[:description] %>" ></script>
- <% end %>
+<%= form_tag charges_path do %>
+
+  <% if current_user.role == 'standard' %> 
+
+    <h3><%= current_user.email %>, you are a "standard" user!</h3>
+    <h3> Upgrade to premium membership</h3>
+    <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount=<%= @stripe_btn_data[:amount] %> data-description="<%= @stripe_btn_data[:description] %>" ></script>
+  <% else %> 
+    <h3><%= current_user.email %>, you are a "premium" user!</h3>
+    <h3> Downgrade your account? Are you sure?</h3>
+    <br>
+   <%= link_to "Downgrade Here", downgrade_path, class: 'btn btn-warning', data: { confirm: 'Are you sure you want to downgrade and all your wikis will become public?' } %>
+  <% end %>
+  <% end %>
+  
+

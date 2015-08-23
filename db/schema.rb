@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150729200409) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "role"
+    t.string   "role", default: 'standard'
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

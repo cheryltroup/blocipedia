@@ -1,3 +1,8 @@
+ <br>
+<% if @wiki.private %>
+  <p><i>Note: This wiki is PRIVATE</i></p>
+<% end %>
+
 <h1><%= @wiki.title %></h1>
 
 <% if policy(@wiki).edit? %>

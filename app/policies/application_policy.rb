@@ -11,7 +11,6 @@ class ApplicationPolicy
   end
 
   def show?
-  
     scope.where(:id => record.id).exists?
   end
 
@@ -24,20 +23,19 @@ class ApplicationPolicy
   end
 
   def update?
-    user.present?
-    
-  end
+    user.present? 
+   end
 
   def edit?
     update?
   end
 
   def destroy?
-    false
+    update?
   end
 
   def scope
-    Pundit.policy_scope!(user, record.class)
+    record.class
   end
 
   class Scope

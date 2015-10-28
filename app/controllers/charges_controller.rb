@@ -29,7 +29,6 @@ class ChargesController < ApplicationController
  
    current_user.update_attribute(:role, 'premium')
    current_user.save
-
    flash[:notice] = "You have upgraded your account!, #{current_user.email}! Thank You!"
    redirect_to wikis_path(current_user) # or wherever
  

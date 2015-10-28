@@ -14,7 +14,7 @@ require 'faker'
      title:  Faker::Lorem.sentence,
      body:   Faker::Lorem.paragraph,
      user_id: 'admin',
-     private: 'false'
+     private: false
 
    )
  end

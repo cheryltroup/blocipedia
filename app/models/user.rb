@@ -9,7 +9,7 @@ has_many :wikis
 
 def set_role
  	self.role ||= 'standard'
- end
+end
 
 def admin?
   role == 'admin'

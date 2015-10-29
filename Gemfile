@@ -27,6 +27,7 @@ gem 'devise'
 gem 'figaro','1.0'
 gem 'pundit'
 gem 'stripe'
+gem 'redcarpet'
 
 
 # Use ActiveModel has_secure_password
